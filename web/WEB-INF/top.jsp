@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>登录顶部</title>
+    <script type="text/javascript" src="./resources/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/common.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/normalize.css">
     <style>

@@ -19,18 +19,35 @@
     }
     #btns input:first-child{
         margin-right: 30px;
+
     }
     #btns input:last-child{
         margin-left: 30px;
+    }
+
+    #span{
+        text-align: center;
+        margin: 0px;
     }
 </style>
 <body background="<%= request.getContextPath()%>/resources/img/src=http___cdn.52ppt.com_d_file_beijing_201412_2014121510573002.jpg&refer=http___cdn.52ppt.jpg">
     <div style="margin-top: 150px">
         <jsp:include page="top.jsp"/>
         <div id="cont" >
+            <%
+                String message = (String) request.getAttribute("message");
+                if (message !=null){
+            %>
+            <h3 style="color:red;text-align:center;">出错信息:${{message}}</h3>
+            <%
+                }
+            %>
             <form action="<%= request.getContextPath()%>/loginServlet?type=TrueLogin" method="post">
 <%--            <form action="/StudentManagement">--%>
 <%--                获取端口号   --%>
+                <div id="span" style="padding: 0px">
+                    <span style="color: #ff0000;display: none;">${message}</span>
+                </div>
                 <div>
                     <lable for="userName" >
                        用户名:
@@ -43,14 +60,23 @@
                        <input type="password" name="pwd"/>
                     </lable>
                 </div>
+
                 <div id="btns">
-                    <input type="submit" value="登录">
-                    <input type="button" value="重置">
+                    <input type="submit" onclick="errorDescript()" value="登录">
+                    <input type="button" onclick="resetForm()" value="重置">
                 </div>
             </form>
         </div>
         <jsp:include page="bottom.jsp"/>
 
     </div>
+    <script>
+        function resetForm() {
+            document.forms[0].reset();
+        }
+        function errorDescript() {
+            $("#span").css('display', 'block');
+        }
+    </script>
 </body>
 </html>
