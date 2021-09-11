@@ -30,7 +30,7 @@
         margin: 0px;
     }
 </style>
-<body background="<%= request.getContextPath()%>/resources/img/src=http___cdn.52ppt.com_d_file_beijing_201412_2014121510573002.jpg&refer=http___cdn.52ppt.jpg">
+<body>
     <div style="margin-top: 150px">
         <jsp:include page="top.jsp"/>
         <div id="cont" >
@@ -73,9 +73,6 @@
     <script>
         function resetForm() {
             document.forms[0].reset();
-        }
-        function errorDescript() {
-            $("#span").css('display', 'block');
         }
     </script>
 </body>

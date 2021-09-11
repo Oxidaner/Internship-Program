@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.web.javaweb.student.javabean.entity.StudentDO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.web.javaweb.student.javabean.res.TableResult" %><%--
   Created by IntelliJ IDEA.
   User: A
   Date: 2021/9/9
@@ -26,8 +28,7 @@
         padding:0 10px;
     }
     #cont{
-        text-align: left;
-        margin-left: 560px;
+        text-align: center;
         margin-top: 50px;
         line-height: 1.5;
     }
@@ -36,7 +37,7 @@
     }
 </style>
 </head>
-<body background="<%= request.getContextPath()%>/resources/img/src=http___cdn.52ppt.com_d_file_beijing_201412_2014121510573002.jpg&refer=http___cdn.52ppt.jpg">
+<body>
     <div style="margin-top: 150px">
         <jsp:include page="../top.jsp"/>
         <div id="cont">
@@ -45,14 +46,14 @@
                 <a href="#">成绩管理</a>
             </section>
             <section class="search">
-                <a href="#">新增学生</a>
+                <a href="<%=request.getContextPath()%>/StudentServlet?type=toAdd">新增学生</a>
                 <form method="post" action="">
                     <input type="text" name="studentName">
                     <input type="submit" value="查询">
                 </form>
             </section>
             <section>
-                <table>
+                <table style="margin-left: 600px">
                     <thead>
                         <tr>
                             <th>学号</th>
@@ -64,7 +65,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            TableResult<StudentDO> tableResult = (TableResult) request.getAttribute("tableResult");
+                            List<StudentDO> data = tableResult.getData();
+                            for (int i = 0; i < data.size(); i++) {
+                                StudentDO studentDO = data.get(i);
+                         %>
 
+                            <tr>
+                                <td><%= studentDO.getId() %></td>
+                                <td><%= studentDO.getName() %></td>
+                                <td><%= studentDO.getAge() %></td>
+                                <td><%= studentDO.getGrade() %></td>
+                                <td><%= studentDO.getDn() %></td>
+                                <td>操作</td>
+                            </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                     <div class="page">
                         <a href="#">首页</a>

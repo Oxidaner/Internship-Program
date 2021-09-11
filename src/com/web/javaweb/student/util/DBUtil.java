@@ -9,7 +9,7 @@ import java.sql.*;
  * @version: 1.0
  */
 public class DBUtil {
-    private static final String URL = "jdbc:mysql://localhost:3306/student_management?serverTimezone=UTC&useSSL=false";
+    private static final String URL = "jdbc:mysql://localhost:3306/student_management?serverTimezone=UTC&useSSL=false&characterEncoding=utf-8";
     //    链接URL
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 //    驱动
