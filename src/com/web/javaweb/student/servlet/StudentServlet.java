@@ -66,6 +66,37 @@ public class StudentServlet extends HttpServlet {
             studentDO.setGrade(grade);
             studentService.addStudent(studentDO);
             response.sendRedirect( request.getContextPath() + "/StudentServlet?type=toStudentManage");
+        }else if ("toUpdate".equals(type)) {
+            //查找要更新的对象,再回想到页面上
+            String studentID = request.getParameter("id");
+            String pageNow = request.getParameter("pageNow");
+            StudentDO studentDO = studentService.getStudentById(Integer.parseInt(studentID));
+            request.setAttribute("studentDO",studentDO);
+            request.setAttribute("pageNow",Integer.parseInt(pageNow));
+            request.getRequestDispatcher("/WEB-INF/student/update.jsp").forward(request, response);
+        }else if ("update".equals(type)) {
+            //查找要更新的对象,再回想到页面上
+            String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String age = request.getParameter("age");
+            String grade = request.getParameter("grade");
+            String dn = request.getParameter("dn");
+            String pageNow = request.getParameter("pageNow");
+            //把参数封装为对象
+            StudentDO studentDO = new StudentDO();
+            studentDO.setName(name);
+            studentDO.setId(id);
+            studentDO.setAge(age);
+            studentDO.setDn(dn);
+            studentDO.setGrade(grade);
+            studentService.updateStudent(studentDO);
+            request.setAttribute("studentDO",studentDO);
+            response.sendRedirect( request.getContextPath() + "/StudentServlet?type=toStudentManage&pageNow="+pageNow);
+        }else if ("delete".equals(type)) {
+            //查找要更新的对象,再回想到页面上
+            String id = request.getParameter("id");
+            studentService.deleteStudentById(Integer.parseInt(id));
+            response.sendRedirect( request.getContextPath() + "/StudentServlet?type=toStudentManage");
         }
     }
 }

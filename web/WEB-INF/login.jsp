@@ -31,7 +31,7 @@
     }
 </style>
 <body>
-    <div style="margin-top: 150px">
+    <div style="margin-top: 100px">
         <jsp:include page="top.jsp"/>
         <div id="cont" >
             <%
